@@ -1,13 +1,85 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// apps/api/prisma/schema.prisma
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
+// Using SQLite for seamless local development
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
+}
+
+// --- ENUMS ---
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+// --- MODELS ---
+
+model Home {
+  id        String   @id @default(cuid())
+  name      String // e.g., "The Bachelor Pad"
+  code      String   @unique // The 6-digit invite code for members to join
+  createdAt DateTime @default(now())
+
+  users User[]
+}
+
+model User {
+  id       String @id @default(cuid())
+  name     String
+  email    String @unique
+  password String
+  role     Role   @default(MEMBER)
+
+  // A user belongs to a Home (Optional because they might not have joined one yet!)
+  homeId String?
+  home   Home?   @relation(fields: [homeId], references: [id])
+
+  // One-to-One relation for the user's fixed costs
+  fixedCost FixedCost?
+
+  meals    Meal[]
+  expenses Expense[]
+}
+
+model FixedCost {
+  id        String @id @default(cuid())
+  rent      Float  @default(0)
+  maid      Float  @default(0)
+  wifi      Float  @default(0)
+  utilities Float  @default(0) // Gas, Water, Moyla, etc.
+
+  // Links directly back to the specific User
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Meal {
+  id          String   @id @default(cuid())
+  date        DateTime @default(now())
+  lunchCount  Int      @default(0)
+  dinnerCount Int      @default(0)
+  status      Status   @default(PENDING)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  date        DateTime @default(now())
+  amount      Float
+  description String // e.g., "Bazaar - Chicken and Onions"
+  status      Status   @default(PENDING)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }
