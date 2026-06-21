@@ -1,0 +1,32 @@
+{
+  "name": "mealmate",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,css,md}\"",
+    "lint": "eslint \"**/*.{ts,tsx,js}\" --fix",
+    "knip": "knip",
+    "clean": "pnpm run format && pnpm run lint && pnpm run knip",
+    "dev:api": "pnpm --filter api run dev",
+    "dev:mobile": "pnpm --filter mobile run dev",
+    "dev": "pnpm --filter api --filter mobile --parallel run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@11.7.0",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.5.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.6",
+    "knip": "6.17.1",
+    "prettier": "3.8.4",
+    "typescript-eslint": "8.61.1"
+  },
+  "dependencies": {
+    "expo": "~56.0.12",
+    "react": "19.2.3",
+    "react-native": "0.85.3"
+  }
+}

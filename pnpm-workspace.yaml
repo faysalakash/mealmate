@@ -1,0 +1,12 @@
+packages:
+  - 'apps/*'
+
+allowBuilds:
+  '@prisma/engines': false
+  esbuild: false
+  prisma: false
+
+nodeLinker: hoisted
+
+overrides:
+  lightningcss: "1.30.1"

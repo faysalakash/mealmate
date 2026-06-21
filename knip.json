@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "workspaces": {
+    "apps/api": {
+      "entry": ["src/index.ts"],
+      "ignoreDependencies": ["@prisma/client", "zod"]
+    },
+    "apps/mobile": {
+      "entry": ["app/**/*.tsx", "app.json"],
+      "ignoreDependencies": [
+        "@tanstack/react-query",
+        "expo-status-bar",
+        "zustand",
+        "expo-updates",
+        "expo-system-ui"
+      ]
+    }
+  }
+}

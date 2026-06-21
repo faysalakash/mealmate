@@ -1,0 +1,78 @@
+# ========================================
+# OS & IDE
+# ========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+*~
+
+# ========================================
+# Node.js & Package Managers
+# ========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+
+# ========================================
+# Environment Variables & Secrets
+# ========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# ========================================
+# Expo & React Native (apps/mobile)
+# ========================================
+apps/mobile/.expo/
+apps/mobile/dist/
+apps/mobile/web-build/
+apps/mobile/expo-env.d.ts
+apps/mobile/.metro-health-check*
+
+# Auto-generated Native Directories (Continuous Native Generation)
+apps/mobile/ios/
+apps/mobile/android/
+
+# Native Build Artifacts & Keystores
+apps/mobile/*.orig.*
+apps/mobile/*.jks
+apps/mobile/*.p8
+apps/mobile/*.p12
+apps/mobile/*.key
+apps/mobile/*.mobileprovision
+apps/mobile/*.apk
+apps/mobile/*.aab
+
+# ========================================
+# API & Backend (apps/api)
+# ========================================
+apps/api/dist/
+apps/api/build/
+apps/api/coverage/
+
+# Prisma (If you generate local SQLite databases)
+apps/api/prisma/*.db
+apps/api/prisma/*.db-journal
+
+# ========================================
+# Global Build Outputs & Caches
+# ========================================
+dist/
+build/
+coverage/
+.turbo/
+.cache/
+.expo/
